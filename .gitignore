@@ -1,0 +1,10 @@
+.DS_Store
+.env
+transcript_raw.json
+*.wav
+*.mp3
+*.m4a
+ramle-shuk.html
+field-recording-prompt.md
+google-stitch-prompt.md
+design-system-suggestion.md

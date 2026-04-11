@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="light" dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>על התוכנית — מקורב לצלחת</title>
+<meta name="description" content="מקורב לצלחת — מסע שבועי אל השווקים, המטבחים, השדות והמעבדות של ישראל. תוכנית של שאול אמסטרדמסקי בכאן רשת ב׳."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-container": "#f2ede5",
+        "on-tertiary": "#ffffff",
+        "outline": "#88726b",
+        "on-surface-variant": "#55433c",
+        "outline-variant": "#dbc1b8",
+        "surface-container-highest": "#e7e2da",
+        "on-background": "#1d1c17",
+        "primary-container": "#b85c38",
+        "surface-tint": "#994422",
+        "primary-fixed": "#ffdbcf",
+        "background": "#fef9f1",
+        "surface-container-lowest": "#ffffff",
+        "primary": "#994422",
+        "on-primary": "#ffffff",
+        "surface": "#fef9f1",
+        "on-primary-container": "#ffffff",
+        "inverse-surface": "#32302b",
+        "inverse-on-surface": "#f5f0e8",
+        "secondary": "#6b705c",
+        "on-secondary": "#ffffff",
+        "primary-fixed-dim": "#ffb59a",
+        "surface-container-high": "#ece8e0",
+        "surface-container-low": "#f8f3eb",
+        "on-surface": "#1d1c17",
+        "tertiary": "#853a00",
+        "surface-variant": "#e7e2da"
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+      fontFamily: {
+        headline: ["Work Sans"],
+        body: ["Newsreader"],
+        label: ["Work Sans"]
+      }
+    }
+  }
+}
+</script>
+<style>
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.signature-gradient {
+  background: linear-gradient(90deg, #994422 0%, #853a00 50%, #6b705c 100%);
+}
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed-dim">
+
+<!-- ═══ TOP NAV ═══ -->
+<nav class="fixed top-0 w-full z-50 bg-[#fef9f1]/85 backdrop-blur-md shadow-[0_32px_32px_rgba(29,28,23,0.06)] bg-gradient-to-r from-[#994422] via-[#853a00] to-[#6b705c] bg-[length:100%_4px] bg-bottom bg-no-repeat">
+  <div class="flex flex-row-reverse justify-between items-center w-full px-8 py-4 max-w-full mx-auto">
+    <a href="index.html" class="text-2xl font-bold text-primary font-headline">מקורב לצלחת</a>
+    <div class="hidden md:flex gap-8 items-center font-headline font-medium text-lg tracking-tight">
+      <a class="text-stone-600 hover:text-primary transition-colors" href="index.html">פרקים</a>
+      <a class="text-primary" href="about.html">על התוכנית</a>
+      <a class="text-stone-600 hover:text-primary transition-colors" href="#">האזינו</a>
+    </div>
+    <button class="md:hidden text-primary">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-5xl mx-auto">
+
+  <!-- Header -->
+  <header class="mb-16 text-right">
+    <div class="inline-block px-3 py-1 mb-6 border-r-4 border-primary bg-surface-container-low">
+      <span class="font-headline text-xs uppercase tracking-[0.2em] text-tertiary">קצת עלינו</span>
+    </div>
+    <h1 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface tracking-tighter leading-none mb-4">
+      הסיפור שמאחורי המנה
+    </h1>
+  </header>
+
+  <!-- Asymmetric Editorial Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+    <!-- Host Portrait -->
+    <div class="lg:col-span-5 order-2 lg:order-1">
+      <div class="relative group">
+        <div class="absolute inset-0 bg-surface-container translate-x-4 translate-y-4 -z-10 rounded-sm"></div>
+        <img class="w-full aspect-[3/4] object-cover rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]" src="images/shaul-portrait.jpg" alt="שאול אמסטרדמסקי בחליפת דבוראי עם מיקרופון כאן"/>
+        <div class="mt-4 border-r-2 border-outline-variant pr-4">
+          <p class="font-headline text-sm text-on-surface-variant italic">שאול אמסטרדמסקי, צילום: מערכת כאן</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Narrative Content -->
+    <div class="lg:col-span-7 order-1 lg:order-2 space-y-10">
+      <div class="space-y-6">
+        <p class="font-body text-2xl md:text-3xl leading-[1.6] text-on-surface-variant font-light">
+          מקורב לצלחת הוא מסע שבועי אל השווקים, המטבחים, השדות והמעבדות של ישראל.
+        </p>
+        <div class="signature-gradient h-[4px] w-24"></div>
+        <p class="font-body text-lg md:text-xl leading-[1.85] text-on-surface">
+          בכל פרק, שאול אמסטרדמסקי יוצא לשטח כדי להבין למה אנחנו אוכלים מה שאנחנו אוכלים — ומי האנשים שמאחורי הצלחת. מהחידושים הטכנולוגיים שמחליפים את החקלאות המסורתית ועד לסודות המטבח שנשמרו דורות, אנחנו צוללים לעומק התרבות והכלכלה של האוכל הישראלי.
+        </p>
+        <p class="font-body text-lg md:text-xl leading-[1.85] text-on-surface">
+          התוכנית משודרת ב<strong>כאן רשת ב׳</strong>, בכל יום שישי בשעה 11:00.
+          עריכה: <strong>אסף אביר</strong>. הפקה: <strong>אלון אמיצי</strong>.
+        </p>
+      </div>
+
+      <!-- Listening Platforms Card -->
+      <div class="bg-surface-container p-8 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)] border-r-4 border-primary">
+        <h3 class="font-headline font-bold text-xl mb-6 text-primary">איפה מאזינים?</h3>
+        <div class="flex flex-wrap gap-4">
+          <a class="flex items-center gap-3 bg-surface-container-lowest px-5 py-3 rounded-sm hover:shadow-md transition-all group" href="https://open.spotify.com/show/0qOrHIfS3DL1S84MNE9LZa" target="_blank" rel="noopener">
+            <span class="material-symbols-outlined text-primary">podcasts</span>
+            <span class="font-headline font-medium text-sm">Spotify</span>
+          </a>
+          <a class="flex items-center gap-3 bg-surface-container-lowest px-5 py-3 rounded-sm hover:shadow-md transition-all group" href="https://podcasts.apple.com/gb/podcast/%D7%9E%D7%A7%D7%95%D7%A8%D7%91-%D7%9C%D7%A6%D7%9C%D7%97%D7%AA-dishing-out/id1768741829" target="_blank" rel="noopener">
+            <span class="material-symbols-outlined text-primary">radio</span>
+            <span class="font-headline font-medium text-sm">Apple Podcasts</span>
+          </a>
+          <a class="flex items-center gap-3 bg-surface-container-lowest px-5 py-3 rounded-sm hover:shadow-md transition-all group" href="https://www.kan.org.il/content/kan/kan-b/p-798189/" target="_blank" rel="noopener">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+            <span class="font-headline font-medium text-sm">כאן הסכתים</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 bg-surface-container shadow-[0_-8px_32px_rgba(29,28,23,0.08)] z-40">
+  <a class="flex flex-col items-center gap-1 text-primary font-bold" href="https://open.spotify.com/show/0qOrHIfS3DL1S84MNE9LZa" target="_blank" rel="noopener">
+    <span class="material-symbols-outlined">podcasts</span>
+    <span class="font-headline uppercase tracking-widest text-[10px]">ספוטיפיי</span>
+  </a>
+  <a class="flex flex-col items-center gap-1 text-stone-500" href="https://podcasts.apple.com/gb/podcast/%D7%9E%D7%A7%D7%95%D7%A8%D7%91-%D7%9C%D7%A6%D7%9C%D7%97%D7%AA-dishing-out/id1768741829" target="_blank" rel="noopener">
+    <span class="material-symbols-outlined">radio</span>
+    <span class="font-headline uppercase tracking-widest text-[10px]">אפל</span>
+  </a>
+  <a class="flex flex-col items-center gap-1 text-stone-500" href="https://www.kan.org.il/content/kan/kan-b/p-798189/" target="_blank" rel="noopener">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+    <span class="font-headline uppercase tracking-widest text-[10px]">כאן</span>
+  </a>
+</nav>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="w-full py-12 px-8 bg-surface-container-highest flex flex-col items-center justify-center text-center gap-4">
+  <div class="signature-gradient h-1 w-32 mb-4 opacity-50"></div>
+  <p class="font-body italic text-sm leading-relaxed text-stone-800">
+    מקורב לצלחת · כאן רשת ב׳ · שישי בשעה 11:00
+  </p>
+  <p class="text-stone-500 font-body italic text-sm">עריכה: אסף אביר · הפקה: אלון אמיצי</p>
+</footer>
+
+</body>
+</html>
