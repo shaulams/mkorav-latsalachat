@@ -185,26 +185,26 @@ The YouTube playlist contains video versions of the episodes. Matching strategy:
 
 ## Google Drive Integration
 
+### Source folder
+- Folder ID: `1EuCBvCVC-QQXjUN_tma2B7m2Z10GOH6N`
+- Structure: subfolders per episode (e.g. "ספיישל מצפה רמון", "ספיישל תלפיות")
+- Audio files (WAV/MP3/M4A) are inside each subfolder
+- May contain duplicates — script should deduplicate by filename
+
 ### Authentication
-- Use Google Drive API via service account or OAuth (one-time setup)
-- Or simpler: use `gdown` if files are shared via link
-- Or simplest: use `rclone` which handles Drive auth well
+- Use `rclone` (recommended) — handles Google Drive OAuth, supports folder listing + binary file download
+- Alternative: `google-api-python-client` with service account
+- Note: The Claude Code Google Drive MCP only reads Google Docs, NOT audio files. Must use rclone or the API directly.
 
 ### File discovery
-- Script takes a Drive folder path/ID as input
-- Lists all audio files (`.wav`, `.mp3`, `.m4a`)
+- Script uses `rclone ls` to list all audio files recursively in the Drive folder
+- Deduplicates by filename (keep latest modified)
 - Downloads one at a time to `/tmp/mkorav/`
 
-### Filename convention
-Audio files should be named with the location for the script to extract metadata:
-```
-שוק רמלה.wav
-יפו.wav
-שוק נתניה.wav
-שדה בנגב.wav
-```
-
-If filenames aren't clean, the script falls back to asking Claude to identify the location from the transcript.
+### Episode name extraction
+- Subfolder name = episode name (e.g. "ספיישל מצפה רמון" → מצפה רמון)
+- Strip "ספיישל" prefix if present
+- If ambiguous, fall back to asking Claude to identify the location from the transcript
 
 ---
 
