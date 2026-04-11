@@ -1,0 +1,10 @@
+*.wav
+*.mp3
+*.m4a
+*.json
+ramle-shuk.html
+field-recording-prompt.md
+google-stitch-prompt.md
+design-system-suggestion.md
+transcript_formatted.md
+.claude/
