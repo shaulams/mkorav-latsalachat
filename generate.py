@@ -370,11 +370,14 @@ def render_map_listings_html(article: dict) -> str:
 def render_episode_page(article: dict) -> str:
     """Render full episode HTML page using Jinja2 template."""
     from jinja2 import Environment, FileSystemLoader
+    from map_generator import generate_svg_map
+
     env = Environment(loader=FileSystemLoader(str(BASE_DIR)))
     template = env.get_template('template.html')
 
     body_html = render_body_html(article)
     map_listings_html = render_map_listings_html(article)
+    map_svg = generate_svg_map(article)
 
     return template.render(
         title=article.get('title', ''),
@@ -386,6 +389,7 @@ def render_episode_page(article: dict) -> str:
         body_html=body_html,
         youtube_id=article.get('youtube_id'),
         map_listings_html=map_listings_html,
+        map_svg=map_svg,
         hero_image=article.get('hero_image'),
     )
 

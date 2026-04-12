@@ -161,7 +161,12 @@ tailwind.config = {
         <p class="font-label text-surface-variant uppercase tracking-widest">התחנות ב{{ location }}</p>
       </div>
 
-      <!-- Station Listings with Google Maps links -->
+      <!-- SVG Map -->
+      <div class="max-w-[700px] mx-auto mb-16">
+        {{ map_svg | safe }}
+      </div>
+
+      <!-- Station Listings -->
       <div class="max-w-[500px] mx-auto flex flex-col md:flex-row justify-between gap-8">
         {{ map_listings_html | safe }}
       </div>
