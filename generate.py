@@ -217,13 +217,23 @@ def slugify(name: str) -> str:
     return slug
 
 def convert_to_mp3(input_path: str) -> str:
-    """Convert audio to MP3 64kbps mono using ffmpeg. Returns MP3 path."""
-    mp3_path = input_path.rsplit('.', 1)[0] + '.mp3'
-    if input_path.endswith('.mp3'):
+    """Convert audio to MP3 48kbps mono using ffmpeg. Returns MP3 path.
+    Re-encodes even existing MP3s if they're over 24MB (Whisper limit is 25MB)."""
+    MAX_SIZE = 24 * 1024 * 1024  # 24MB to stay safely under 25MB limit
+
+    # If already MP3 and small enough, use as-is
+    if input_path.endswith('.mp3') and os.path.getsize(input_path) <= MAX_SIZE:
         return input_path
+
+    # Generate output path (add _small suffix if input is already mp3)
+    if input_path.endswith('.mp3'):
+        mp3_path = input_path.rsplit('.', 1)[0] + '_small.mp3'
+    else:
+        mp3_path = input_path.rsplit('.', 1)[0] + '.mp3'
+
     subprocess.run([
         'ffmpeg', '-i', input_path,
-        '-codec:a', 'libmp3lame', '-b:a', '64k', '-ac', '1',
+        '-codec:a', 'libmp3lame', '-b:a', '48k', '-ac', '1',
         mp3_path, '-y'
     ], capture_output=True, check=True)
     return mp3_path

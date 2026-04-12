@@ -110,18 +110,22 @@ tailwind.config = {
   <!-- ═══ HERO: Featured Episode ═══ -->
   <section class="relative w-full min-h-[870px] flex flex-col md:flex-row-reverse overflow-hidden">
     <div class="w-full md:w-3/5 h-[512px] md:h-auto overflow-hidden">
-      <img class="w-full h-full object-cover" src="images/shuk-ramle.jpg" alt="שוק רמלה — דוכני פירות וירקות תחת גג הקשתות"/>
+      
+      <div class="w-full h-full bg-surface-container-high flex items-center justify-center">
+        <span class="material-symbols-outlined text-9xl text-outline-variant">image</span>
+      </div>
+      
     </div>
     <div class="w-full md:w-2/5 p-8 md:p-16 flex flex-col justify-center bg-surface">
       <div class="inline-block w-12 h-1 bg-primary mb-6"></div>
       <h1 class="text-5xl md:text-7xl font-bold font-headline leading-tight mb-6 text-on-surface">
-        שלוש תחנות בשוק רמלה
+        לחם יבש, קובה רותח ודונאט אמריקאי בלב הקרח החרדי
       </h1>
       <p class="text-xl md:text-2xl text-on-surface-variant leading-relaxed mb-8 max-w-xl">
-        חומוס של משפחה נוצרית, דוסה הודית שדורשת 13 שעות הכנה, ומאמולים שמכינה אמא בת 94 — סיור בשוק שמסרב להתגנטרפי.
+        מאפיית נחמה עם תנור בן מאה שנה, הפטיליה של משפחת לוי שמבשלת 56 שנה בלי הפסקה, וקפה אמריקאי לאברכי ישיבת מיר — סיור בשכונה שמאחורי מאה שערים.
       </p>
       <div class="flex">
-        <a href="episodes/ramle.html" class="bg-primary-container text-on-primary px-8 py-4 rounded-[0.375rem] font-headline font-semibold text-lg hover:brightness-110 transition-all active:scale-95">
+        <a href="episodes/beit-israel.html" class="bg-primary-container text-on-primary px-8 py-4 rounded-[0.375rem] font-headline font-semibold text-lg hover:brightness-110 transition-all active:scale-95">
           קראו עוד
         </a>
       </div>
@@ -167,11 +171,190 @@ tailwind.config = {
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-        <!-- Card 1: Ramle (real) -->
+        
+        <!-- Card: לחם יבש, קובה רותח ודונאט אמריקאי בלב הקרח החרדי -->
+        <a href="episodes/beit-israel.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שכונת בית ישראל, ירושלים</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            לחם יבש, קובה רותח ודונאט אמריקאי בלב הקרח החרדי
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מאפיית נחמה עם תנור בן מאה שנה, הפטיליה של משפחת לוי שמבשלת 56 שנה בלי הפסקה, וקפה אמריקאי לאברכי ישיבת מיר — סיור בשכונה שמאחורי מאה שערים.
+          </p>
+        </a>
+        
+        <!-- Card: פיוז'ן, פרנה וחם חם — מסע טעמים בבית שאן -->
+        <a href="episodes/beit-shean.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">בית שאן</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            פיוז'ן, פרנה וחם חם — מסע טעמים בבית שאן
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מסעדת פיוז'ן שלא ציפיתם למצוא בפריפריה, סטקייה ותיקה עם לחם בית שגורם לך לקנות הביתה, וחם חם ביתי שלא תמצאו בשום חנות.
+          </p>
+        </a>
+        
+        <!-- Card: צ'ונט, קוגל ועשרת אלפים חלות — ליל חמישי בבני ברק -->
+        <a href="episodes/bnei-brak.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">בני ברק</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            צ'ונט, קוגל ועשרת אלפים חלות — ליל חמישי בבני ברק
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מעדניית אוכל יהודי של שלושה דורות, קיוסק שמגיש צ'ונט מסיר ענק, ומפעל חלות שמייצר עשרת אלפים חלות בשבוע — סיור בדיזנגוף של בני ברק.
+          </p>
+        </a>
+        
+        <!-- Card: לחם, גבינה ופטל — שוק האיכרים הראשון של תל אביב -->
+        <a href="episodes/farmers-market.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק הפשפשים, יפו</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            לחם, גבינה ופטל — שוק האיכרים הראשון של תל אביב
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            אופה שמגדל את הקמח שלו, מחלבה בוטיקית עם שלוש מדליות מהמונדיאל בצרפת, וחקלאי פטל שעזב את הכלכלה — סיור בשוק האיכרים בשוק הפשפשים ביפו.
+          </p>
+        </a>
+        
+        <!-- Card: ערק, טבעוני ופיתות בלי מזלג — ירושלים הליברלית שלא הכרתם -->
+        <a href="episodes/gay-friendly-jerusalem.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">ירושלים</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            ערק, טבעוני ופיתות בלי מזלג — ירושלים הליברלית שלא הכרתם
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בית קפה ליברלי שהוקם על ידי הומו מוצהר בשכונת נחלת שבעה, מתחם תרבות עם אוכל טבעוני בלב העיר, ופיתות מפורקות בשוק מחנה יהודה — סיור בצד הפחות מוכר של ירושלים.
+          </p>
+        </a>
+        
+        <!-- Card: סנדוויץ' סבתא, תרום כפי יכולתך -->
+        <a href="episodes/hisda.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">קריית מנחם, ירושלים</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            סנדוויץ' סבתא, תרום כפי יכולתך
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בודקה קטנה בשכונת קריית מנחם בירושלים שמאכילה מאתיים אנשים ביום בשיטת שלם-כמה-שתרצה — סיפור על חסד, לחמניות ומקום שעושה את העולם קצת יותר טוב.
+          </p>
+        </a>
+        
+        <!-- Card: הקפה שגדל בשפלה — עשר שנים של חלום ישראלי -->
+        <a href="episodes/israeli-coffee.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">מושב גני טל, שפלה</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            הקפה שגדל בשפלה — עשר שנים של חלום ישראלי
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            דקלה פוקס ואביה מגדלים קפה כחול-לבן במושב גני טל שבשפלה. בין שיחים של עשר שנים, תנור קלייה ובית קפה קטן — הסיפור של מי שמסרב לוותר על החלום.
+          </p>
+        </a>
+        
+        <!-- Card: מקלובה, לוטניצה ואחד עשרה שנה על השדרה -->
+        <a href="episodes/jaffa.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">סדרות ירושלים, יפו</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            מקלובה, לוטניצה ואחד עשרה שנה על השדרה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מסעדה ערבית ביתית עם מקלובה שנהפכת מול העיניים, מעדנייה בולגרית בת ארבעים שנה, ומעדנייה חדשה עם ליקר ארטישוק — סדרות ירושלים ביפו.
+          </p>
+        </a>
+        
+        <!-- Card: שלוש תחנות בשוק רמלה -->
         <a href="episodes/ramle.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
           <div class="relative overflow-hidden mb-6 aspect-[16/9]">
             <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
-            <img class="w-full h-full object-cover rounded-sm group-hover:scale-105 transition-transform duration-500" src="images/hummus-salim.jpg" alt="שולחן מלא בצלחות חומוס, מסבחה ופול בחומוס סלים"/>
+            
+            <img class="w-full h-full object-cover rounded-sm group-hover:scale-105 transition-transform duration-500" src="images/shuk-ramle.jpg" alt="שלוש תחנות בשוק רמלה"/>
+            
           </div>
           <div class="flex items-center gap-3 mb-3">
             <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק רמלה</span>
@@ -181,26 +364,540 @@ tailwind.config = {
             שלוש תחנות בשוק רמלה
           </h3>
           <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
-            חומוס סלים, מאמא אינדיה וממתקי שהין — סיור בין הטעמים, האנשים והסיפורים של השוק שמסרב להתגנטרפי.
+            חומוס של משפחה נוצרית, דוסה הודית שדורשת 13 שעות הכנה, ומאמולים שמכינה אמא בת 94 — סיור בשוק שמסרב להתגנטרפי.
           </p>
         </a>
-
-        <!-- Card 2: Placeholder -->
-        <div class="group cursor-pointer opacity-40 bg-surface-container-lowest p-4 rounded-sm">
-          <div class="relative overflow-hidden mb-6 aspect-[16/9] bg-surface-container-high rounded-sm flex items-center justify-center">
+        
+        <!-- Card: חומוס, דוסה ומאמולים בשוק רמלה -->
+        <a href="episodes/שוק-רמלה.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
             <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
-            <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
           </div>
           <div class="flex items-center gap-3 mb-3">
-            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">בקרוב</span>
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק רמלה</span>
+            <span class="text-xs text-outline font-label">15.01.2026</span>
           </div>
-          <h3 class="text-3xl font-headline font-bold mb-4 leading-tight">
-            הפרק הבא בדרך...
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            חומוס, דוסה ומאמולים בשוק רמלה
           </h3>
-          <p class="text-lg text-on-surface-variant leading-relaxed">
-            פרקים חדשים עולים כל שבוע. הישארו מעודכנים.
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            חומוס של משפחה נוצרית שפתוח בשבת, דוסה שדורשת 13 שעות הכנה ממסעדה הודית זעירה, ומאמולי מסולת שמכינה אמא בת 94 — שוק שמסרב להתגנטרפי.
           </p>
-        </div>
+        </a>
+        
+        <!-- Card: מרק כבש בפסאז', צ'ודו תג'יקי ובלינצ'קים של סבתא — סיור בבת ים -->
+        <a href="episodes/bat-yam---final-mix-2.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">בת ים</span>
+            <span class="text-xs text-outline font-label">15.08.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            מרק כבש בפסאז', צ'ודו תג'יקי ובלינצ'קים של סבתא — סיור בבת ים
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מסעדה תימנית כשרה בדצ בתוך פסאז', מאפייה תג'יקית שמוכרת ממתקי ענבים, ומסעדה רוסית שהחזירה אותי 30 שנה אחורה.
+          </p>
+        </a>
+        
+        <!-- Card: קפה, נמל ושפיות ברחוב סירקין -->
+        <a href="episodes/תלפיות.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק תלפיות, חיפה</span>
+            <span class="text-xs text-outline font-label">01.08.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קפה, נמל ושפיות ברחוב סירקין
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            קולה קפה בשוק תלפיות בחיפה — בניין שהיה בית קברות הפך למוקד של יצירה, ובעל קפה חיפאי מסביר למה העיר הזאת שפויה.
+          </p>
+        </a>
+        
+        <!-- Card: מאפה שמיר, טיילת חדשה ונקניקייה דנית — סיור בבת גלים -->
+        <a href="episodes/bat-galim.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">בת גלים, חיפה</span>
+            <span class="text-xs text-outline font-label">15.07.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            מאפה שמיר, טיילת חדשה ונקניקייה דנית — סיור בבת גלים
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מאפייה של עורכת דין ואיש שיווק שעשו שיפט, טיילת שמחברת סוף סוף את חיפה לים, ונקניקיות בסגנון קופנהגן — בת גלים פורחת.
+          </p>
+        </a>
+        
+        <!-- Card: קפה, אוגד לט ומכתש בקצה העולם -->
+        <a href="episodes/מצפה-רמון.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">מצפה רמון</span>
+            <span class="text-xs text-outline font-label">01.07.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קפה, אוגד לט ומכתש בקצה העולם
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            שתי בנות, אחת מכפר עזה, פתחו בית קפה במצפה רמון כי לא היה להן איפה לשתות קפה — ויצרו מקום שמקהיל קהילה שלמה על שפת המכתש.
+          </p>
+        </a>
+        
+        <!-- Card: קרואסון צרפתי, ירקן שהוא פסיכולוג ושלגון בוקר — סיור בבקעה -->
+        <a href="episodes/bakaa.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שכונת בקעה, ירושלים</span>
+            <span class="text-xs text-outline font-label">15.06.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קרואסון צרפתי, ירקן שהוא פסיכולוג ושלגון בוקר — סיור בבקעה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            קונדיטור פרפקציוניסט שפתח קיוסק בשכונה, ירקן שמכיר כל לקוח כבר 45 שנה, וגלידת בוטיק עם 40 אחוז פחות סוכר — בוקר בבקעה.
+          </p>
+        </a>
+        
+        <!-- Card: קלצונס, דגים בחלה ועוגת קולנוע: טבריה של פעם -->
+        <a href="episodes/tiberias.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">טבריה</span>
+            <span class="text-xs text-outline font-label">01.06.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קלצונס, דגים בחלה ועוגת קולנוע: טבריה של פעם
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            קונדיטוריה הונגרית משנות ה-67, קציצות דגים בחלה בשוק, וקלצונס שמכינים רק בשבועות — סיור בעיר שנשארה בבואה של עצמה.
+          </p>
+        </a>
+        
+        <!-- Card: דבש מהכוורת להרי יהודה -->
+        <a href="episodes/הרי-יהודה.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">הרי יהודה</span>
+            <span class="text-xs text-outline font-label">01.06.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            דבש מהכוורת להרי יהודה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            דבוראי קטן מנטף שמייצר כמה טונות דבש בשנה, לא מחמם ולא מסנן — וטוען שמי שטעם דבש אמיתי לא יחזור לסופר.
+          </p>
+        </a>
+        
+        <!-- Card: אסאדו בפרנה, מפרום של יודיצ'ה וטקס בונה — סיור באשקלון -->
+        <a href="episodes/ashkelon.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">אשקלון</span>
+            <span class="text-xs text-outline font-label">15.05.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            אסאדו בפרנה, מפרום של יודיצ'ה וטקס בונה — סיור באשקלון
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מסעדת בשר שנפתחה יום אחרי השבעה באוקטובר, מפרום של אם טריפוליטאית וטוניסאית, וטקס קפה אתיופי על המדרחוב — אשקלון מתעקשת.
+          </p>
+        </a>
+        
+        <!-- Card: חומוס בלקני, סביצ'ה ועטריות אורז בשוק הכרמל -->
+        <a href="episodes/שוק-הכרמל.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק הכרמל, תל אביב</span>
+            <span class="text-xs text-outline font-label">15.05.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            חומוס בלקני, סביצ'ה ועטריות אורז בשוק הכרמל
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            חומוס דור רביעי שמעז לחטוא עם קארי וקוקוס, דייג שמאמין שדגים זה אמונה וסבלנות, ומסעדת תאילנד שלא מתחנפת לחך הישראלי — שלוש תחנות בשוק שנושם את השטח שבו הוא נמצא.
+          </p>
+        </a>
+        
+        <!-- Card: פחזניה צרפתית, קישואים עם טוטים והמבורגר של שף צעיר — סיור באשדוד -->
+        <a href="episodes/ashdod.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">אשדוד</span>
+            <span class="text-xs text-outline font-label">15.04.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            פחזניה צרפתית, קישואים עם טוטים והמבורגר של שף צעיר — סיור באשדוד
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            קונדיטוריה שכונתית עם כשרות וטעם של פריז, פטיסרי חדש של בת 24 על הים, והמבורגר בפריפריה שמעדיף קציצה בלי איפור.
+          </p>
+        </a>
+        
+        <!-- Card: בוריקה, קוסקוס ומדלן בשוק נתניה -->
+        <a href="episodes/שוק-נתניה.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק נתניה</span>
+            <span class="text-xs text-outline font-label">01.04.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            בוריקה, קוסקוס ומדלן בשוק נתניה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בוריקה תוניסאית מטוגנת בשמן צלול כאגם, קוסקוס טריפוליטאי עברי עם מפרום בצבע אדום שלא ראיתם, ומאפייה צרפתית-אלג'יראית שכולה שקדים — השוק שעדיין לא התפוצץ.
+          </p>
+        </a>
+        
+        <!-- Card: סינבון של חיבוק, שקשוקה ארגנטינאית וגלידה שמנצחת — סיור בערד -->
+        <a href="episodes/arad.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">ערד</span>
+            <span class="text-xs text-outline font-label">15.03.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            סינבון של חיבוק, שקשוקה ארגנטינאית וגלידה שמנצחת — סיור בערד
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            אמריקאית שטסה לקוריאה ללמוד קפה, אחים ארגנטינאים שמחזיקים מסעדה 46 שנה, ופיצה נפוליטנית בלב הקניון — ערד מפתיעה.
+          </p>
+        </a>
+        
+        <!-- Card: לחם, קרפלאך ווויסקי בסמטאות צפת -->
+        <a href="episodes/tzfat.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">צפת</span>
+            <span class="text-xs text-outline font-label">15.03.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            לחם, קרפלאך ווויסקי בסמטאות צפת
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מאפיית מחמצת של ירושלמי חרדי, מסעדת שף שמחברת בין הקנידלאך של סבתא לפיוז'ן מודרני, ומזקקה שמתחבאת מעל מרתף בן 400 שנה — סיור בעיר שהישראלים שכחו.
+          </p>
+        </a>
+        
+        <!-- Card: קהילה, קבב ופיצה ביער: פרדס חנה מבפנים -->
+        <a href="episodes/pardes.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">פרדס חנה-כרכור</span>
+            <span class="text-xs text-outline font-label">01.03.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קהילה, קבב ופיצה ביער: פרדס חנה מבפנים
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בית קפה שהוא אי של שפיות, דוכן קבב שהתחיל בחצר הבית בקורונה, ופיצה של מורה לעץ בפריקאסט ביער — סיור בעיר שאנשים באים אליה כדי להיות, לא לבקר.
+          </p>
+        </a>
+        
+        <!-- Card: אוכל שמי, דגים מהחכה וכנאפה מגולגלת — סיור בעכו העתיקה -->
+        <a href="episodes/akko.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">עכו העתיקה</span>
+            <span class="text-xs text-outline font-label">15.02.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            אוכל שמי, דגים מהחכה וכנאפה מגולגלת — סיור בעכו העתיקה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מטבח של אישה אחת שמסרבת לתת למוסד להיסגר, דייג דור חמישי שפתח חמרה בשוק, וכנאפה שלא דומה לשום כנאפה שטעמתם.
+          </p>
+        </a>
+        
+        <!-- Card: בריקא, סביך ועובדת קוסקוס: נתיבות מבפנים -->
+        <a href="episodes/netibot.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">נתיבות</span>
+            <span class="text-xs text-outline font-label">01.02.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            בריקא, סביך ועובדת קוסקוס: נתיבות מבפנים
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בריקא שהיא מטרנה מקומית, סביך שנולד דווקא במלחמה, וקוסקוס עבודת יד עם אסאדו — סיור בעיר שמסרבת להישבר.
+          </p>
+        </a>
+        
+        <!-- Card: שלוש עצירות בכביש 65 -->
+        <a href="episodes/wadi-ara.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">ואדי ערה</span>
+            <span class="text-xs text-outline font-label">01.02.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            שלוש עצירות בכביש 65
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מסעדה ביתית בחצר באום אל-פחם, כיכוכים טבעוניים מושחתים בקציר, ומסעדת שף ערבית-איטלקית בערערה — מסע קולינרי לאורך ואדי ערה שמוכיח שיש הרבה מעבר לחומוס ופלאפל.
+          </p>
+        </a>
+        
+        <!-- Card: נקניקייה, פיצה מעושנת וקינוח שמביא לבכי — סיור בעפולה -->
+        <a href="episodes/afula.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">עפולה</span>
+            <span class="text-xs text-outline font-label">15.01.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            נקניקייה, פיצה מעושנת וקינוח שמביא לבכי — סיור בעפולה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            קיוסק של 45 שנה שפתוח 24 שעות, פיצה עם אסאדו בשוק המתחדש, ופטיסרי באזור תעשייה שמגיש עוגיות ברמה של שנקין.
+          </p>
+        </a>
+        
+        <!-- Card: קפה, אינג'רה ושוקולד: רחובות מפתיעה -->
+        <a href="episodes/rehovot---final-mix2.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">רחובות</span>
+            <span class="text-xs text-outline font-label">01.01.2025</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            קפה, אינג'רה ושוקולד: רחובות מפתיעה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בית קפה שנפתח יום אחרי שבעה באוקטובר, מסעדה אתיופית שההורים התפטרו בשבילה, ושוקולטריה שמטפלת בבריאות הנפש — סיור במרכז ההיסטורי של רחובות.
+          </p>
+        </a>
+        
+        <!-- Card: נצרת בלי כנאפה: טעמים של עיר שמסרבת לוותר -->
+        <a href="episodes/nazereth.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">נצרת</span>
+            <span class="text-xs text-outline font-label">24.12.2024</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            נצרת בלי כנאפה: טעמים של עיר שמסרבת לוותר
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            לילות בירות בקפה בוטיק, לאפה ממולאת באולש במאפייה עתיקה, ושישברק במסעדת פיוז'ן — סיור בעיר שהפוטנציאל שלה גדול מהמציאות.
+          </p>
+        </a>
+        
+        <!-- Card: גזוז, בורקס ורוח של פעם בשוק לווינסקי -->
+        <a href="episodes/levinski.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">שוק לווינסקי, תל אביב</span>
+            <span class="text-xs text-outline font-label">01.12.2024</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            גזוז, בורקס ורוח של פעם בשוק לווינסקי
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            בורקס של דור שלישי, גזוז עברי שמתיישן חמש שנים בבקבוק, ומסעדת פועלים תימנית עם אלמנט היפסטרי — סיור בשוק שהפך למדרחוב.
+          </p>
+        </a>
+        
+        <!-- Card: לחמקה חוזרת הביתה -->
+        <a href="episodes/lehemke.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">קריית שמונה</span>
+            <span class="text-xs text-outline font-label">01.09.2024</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            לחמקה חוזרת הביתה
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מאפייה צפונית שנפתחה מחדש אחרי שנתיים של פינוי, אישה אחד שאופה הכל מאפס, ומחסור בעובדים שמזכיר שהגליל עוד לא עומד על הרגליים.
+          </p>
+        </a>
+        
+        <!-- Card: דבש דותיה: יום קטיף עם מוטי אלמוז -->
+        <a href="episodes/mango.html" class="group cursor-pointer block bg-surface-container-lowest p-4 rounded-sm shadow-[0_32px_32px_rgba(29,28,23,0.06)]">
+          <div class="relative overflow-hidden mb-6 aspect-[16/9]">
+            <div class="absolute right-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            
+            <div class="w-full h-full bg-surface-container-high rounded-sm flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <span class="material-symbols-outlined text-6xl text-outline-variant">image</span>
+            </div>
+            
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="bg-surface-container-high px-3 py-1 text-xs font-headline font-bold text-on-surface-variant rounded-full">עמק יזרעאל</span>
+            <span class="text-xs text-outline font-label">01.08.2024</span>
+          </div>
+          <h3 class="text-3xl font-headline font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
+            דבש דותיה: יום קטיף עם מוטי אלמוז
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed line-clamp-2">
+            מנגו שנקטף לפני עשרים דקות, חקלאי שעזב את צה"ל בתשע בערב וחזר לטרקטור בחמש בבוקר, ונוער שמעדיף שדות על מסכים.
+          </p>
+        </a>
+        
+
+        
 
       </div>
     </div>
