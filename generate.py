@@ -2,12 +2,14 @@
 """Content pipeline for מקורב לצלחת website."""
 
 import argparse
+import glob as globmod
 import json
 import os
 import re
 import subprocess
 import sys
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
 # Use dotenv-style manual loading (no extra dependency)
@@ -27,6 +29,8 @@ TRANSCRIPTS_DIR = BASE_DIR / 'transcripts'
 ARTICLES_DIR = BASE_DIR / 'articles'
 EPISODES_DIR = BASE_DIR / 'episodes'
 TEMPLATE_PATH = BASE_DIR / 'template.html'
+TEMPLATE_HOMEPAGE_PATH = BASE_DIR / 'template_homepage.html'
+IMAGES_DIR = BASE_DIR / 'images'
 
 # Google Drive settings
 DRIVE_FOLDER_ID = "1EuCBvCVC-QQXjUN_tma2B7m2Z10GOH6N"
@@ -382,6 +386,89 @@ def save_episode_page(html: str, slug: str) -> Path:
     path.write_text(html, encoding='utf-8')
     return path
 
+def _find_card_image(slug: str) -> str | None:
+    """Find the first image in images/ matching the slug. Returns root-relative path or None."""
+    for ext in ('jpg', 'jpeg', 'png', 'webp'):
+        matches = sorted(IMAGES_DIR.glob(f'*{slug}*.{ext}'))
+        if matches:
+            return f'images/{matches[0].name}'
+        # Also try exact slug prefix
+        matches = sorted(IMAGES_DIR.glob(f'{slug}*.{ext}'))
+        if matches:
+            return f'images/{matches[0].name}'
+    # Fallback: check all images in the directory for any containing the slug
+    for ext in ('jpg', 'jpeg', 'png', 'webp'):
+        for img in sorted(IMAGES_DIR.glob(f'*.{ext}')):
+            if slug in img.stem.lower():
+                return f'images/{img.name}'
+    return None
+
+
+def collect_all_metadata() -> list[dict]:
+    """Scan articles/*.json, collect metadata for all episodes.
+
+    Sort by date (newest first, parse DD.MM.YYYY format).
+    Returns list of dicts with: slug, title, deck, location, date, hero_image, kicker, card_image.
+    """
+    ARTICLES_DIR.mkdir(exist_ok=True)
+    episodes = []
+    for article_file in sorted(ARTICLES_DIR.glob('*.json')):
+        data = json.loads(article_file.read_text(encoding='utf-8'))
+        slug = data.get('slug', article_file.stem)
+
+        # Resolve hero_image to root-relative path (articles store ../images/...)
+        hero_image_raw = data.get('hero_image', '')
+        if hero_image_raw:
+            # Convert ../images/x.jpg -> images/x.jpg for root-level template
+            hero_image = hero_image_raw.replace('../', '')
+        else:
+            hero_image = _find_card_image(slug)
+
+        # Find a card image (first matching image in images/)
+        card_image = _find_card_image(slug) or hero_image
+
+        episodes.append({
+            'slug': slug,
+            'title': data.get('title', ''),
+            'deck': data.get('deck', ''),
+            'location': data.get('location', ''),
+            'date': data.get('date', ''),
+            'hero_image': hero_image,
+            'kicker': data.get('kicker', 'סיור קולינרי'),
+            'card_image': card_image,
+        })
+
+    # Sort by date (DD.MM.YYYY), newest first
+    def _parse_date(ep):
+        try:
+            return datetime.strptime(ep['date'], '%d.%m.%Y')
+        except (ValueError, TypeError):
+            return datetime.min
+
+    episodes.sort(key=_parse_date, reverse=True)
+    return episodes
+
+
+def regenerate_homepage(episodes: list[dict]):
+    """Rebuild index.html using template_homepage.html and episode metadata."""
+    from jinja2 import Environment, FileSystemLoader
+    env = Environment(loader=FileSystemLoader(str(BASE_DIR)))
+    template = env.get_template('template_homepage.html')
+
+    hero = episodes[0] if episodes else {
+        'title': 'מקורב לצלחת',
+        'deck': 'מסע שבועי אל השווקים, המטבחים, השדות והמעבדות של ישראל.',
+        'slug': '',
+        'hero_image': '',
+    }
+
+    html = template.render(hero=hero, episodes=episodes)
+    out_path = BASE_DIR / 'index.html'
+    out_path.write_text(html, encoding='utf-8')
+    print(f'✅ Homepage regenerated: {out_path}')
+    return out_path
+
+
 # ── CLI ──
 
 def cmd_transcribe(args):
@@ -528,6 +615,22 @@ def cmd_pipeline(args):
             print(f'   - {slug}')
     print()
 
+    # Regenerate homepage with all available articles
+    all_eps = collect_all_metadata()
+    if all_eps:
+        print('🏠 Regenerating homepage...')
+        regenerate_homepage(all_eps)
+
+
+def cmd_homepage(args):
+    """Regenerate homepage from all article metadata."""
+    episodes = collect_all_metadata()
+    if not episodes:
+        print('No articles found in articles/. Nothing to do.')
+        return
+    print(f'📄 Found {len(episodes)} episode(s). Regenerating homepage...')
+    regenerate_homepage(episodes)
+
 
 def cmd_render(args):
     """Render article JSON to HTML."""
@@ -578,6 +681,9 @@ def main():
     p_pipeline.add_argument('--limit', type=int, help='Process only first N episodes')
     p_pipeline.add_argument('--force', action='store_true', help='Overwrite existing transcripts/articles')
 
+    # homepage
+    subparsers.add_parser('homepage', help='Regenerate homepage from all articles')
+
     args = parser.parse_args()
 
     if args.command == 'transcribe':
@@ -588,6 +694,8 @@ def main():
         cmd_download(args)
     elif args.command == 'pipeline':
         cmd_pipeline(args)
+    elif args.command == 'homepage':
+        cmd_homepage(args)
     else:
         parser.print_help()
 
