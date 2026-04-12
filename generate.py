@@ -266,12 +266,27 @@ def load_article(slug: str) -> dict:
         raise FileNotFoundError(f'Article not found: {path}')
     return json.loads(path.read_text(encoding='utf-8'))
 
+def _find_station_images(slug: str) -> dict:
+    """Find station images for an episode. Returns {1: path, 2: path} for station numbers."""
+    images = {}
+    for suffix, num in [('station1', 1), ('station2', 2)]:
+        for ext in ['.jpg', '.JPG', '.jpeg', '.png']:
+            path = IMAGES_DIR / f'{slug}-{suffix}{ext}'
+            if path.exists():
+                images[num] = f'../images/{slug}-{suffix}{ext}'
+                break
+    return images
+
 def render_body_html(article: dict) -> str:
-    """Render article body: interleave paragraphs with pull quotes and highlight quotes."""
+    """Render article body: interleave paragraphs with pull quotes, highlight quotes, and station photos."""
     # Build list of content blocks in order
     paragraphs = article.get('body_paragraphs', [])
     pull_quotes = sorted(article.get('pull_quotes', []), key=lambda q: q.get('after_paragraph', 0))
     highlight_quotes = sorted(article.get('highlight_quotes', []), key=lambda q: q.get('after_paragraph', 0))
+
+    # Find station images
+    slug = article.get('slug', '')
+    station_images = _find_station_images(slug)
 
     # Merge quotes into a position map
     inserts = {}  # paragraph_index → list of HTML strings to insert after
@@ -315,9 +330,21 @@ def render_body_html(article: dict) -> str:
             s = station_positions[i]
             colors = {'primary': 'primary', 'tertiary': 'tertiary', 'secondary': 'secondary'}
             color = colors.get(s.get('color', 'primary'), 'primary')
+
+            # Insert full-width photo before station header (if available)
+            station_num = s['number']
+            if station_num in station_images:
+                img_path = station_images[station_num]
+                html_parts.append(f'''
+  </article>
+  <figure class="w-full mb-0">
+    <img class="w-full h-[500px] md:h-[614px] object-cover" src="{img_path}" alt="{s['name']}"/>
+  </figure>
+  <article class="max-w-[680px] mx-auto px-6 pt-12 text-on-surface">''')
+
             html_parts.append(f'''
     <div class="flex items-start gap-6 mb-8 group mt-16">
-      <div class="station-number bg-{color} text-on-{color}">{s['number']}</div>
+      <div class="station-number bg-{color} text-on-{color}">{station_num}</div>
       <div>
         <h3 class="font-headline font-bold text-2xl mb-1 group-hover:text-{color} transition-colors">{s['name']}</h3>
         <p class="font-label text-on-surface-variant">{s.get('descriptor', '')}</p>
