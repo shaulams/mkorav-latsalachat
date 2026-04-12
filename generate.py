@@ -4,6 +4,7 @@
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -27,6 +28,177 @@ ARTICLES_DIR = BASE_DIR / 'articles'
 EPISODES_DIR = BASE_DIR / 'episodes'
 TEMPLATE_PATH = BASE_DIR / 'template.html'
 
+# Google Drive settings
+DRIVE_FOLDER_ID = "1EuCBvCVC-QQXjUN_tma2B7m2Z10GOH6N"
+DRIVE_REMOTE = "gdrive2"
+TEMP_DIR = Path(tempfile.gettempdir()) / "mkorav"
+
+def list_drive_episodes() -> list[dict]:
+    """Use rclone to list all audio files in the Drive folder.
+
+    Parses rclone ls output, filters to Final Cut/Mix/Final files,
+    excludes teasers, handles duplicates, and checks special subfolders.
+
+    Returns list of dicts with keys: name, filename, size, subfolder.
+    """
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+
+    # List root folder
+    result = subprocess.run(
+        ['rclone', 'ls', f'{DRIVE_REMOTE}:', '--drive-root-folder-id', DRIVE_FOLDER_ID, '--max-depth', '1'],
+        capture_output=True, text=True, check=True
+    )
+    root_files = _parse_rclone_ls(result.stdout, subfolder=None)
+
+    # List subfolders (look for ספיישל directories)
+    result_dirs = subprocess.run(
+        ['rclone', 'lsd', f'{DRIVE_REMOTE}:', '--drive-root-folder-id', DRIVE_FOLDER_ID, '--max-depth', '1'],
+        capture_output=True, text=True, check=True
+    )
+    subfolder_files = []
+    for line in result_dirs.stdout.strip().splitlines():
+        # lsd output: "          -1 2024-01-01 00:00:00        -1 ספיישל מצפה רמון"
+        parts = line.strip().split()
+        if len(parts) >= 5:
+            folder_name = ' '.join(parts[4:])
+        else:
+            folder_name = line.strip().rsplit(None, 1)[-1] if line.strip() else ''
+        if not folder_name:
+            continue
+        if 'ספיישל' in folder_name or 'special' in folder_name.lower():
+            sub_result = subprocess.run(
+                ['rclone', 'ls', f'{DRIVE_REMOTE}:{folder_name}/', '--drive-root-folder-id', DRIVE_FOLDER_ID, '--max-depth', '1'],
+                capture_output=True, text=True, check=True
+            )
+            subfolder_files.extend(_parse_rclone_ls(sub_result.stdout, subfolder=folder_name))
+
+    all_files = root_files + subfolder_files
+    return _deduplicate_episodes(all_files)
+
+
+def _parse_rclone_ls(output: str, subfolder: str | None) -> list[dict]:
+    """Parse rclone ls output into episode dicts."""
+    episodes = []
+    for line in output.strip().splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        # Format: "228112816 Afula - Final Cut.wav"
+        match = re.match(r'(\d+)\s+(.+)', line)
+        if not match:
+            continue
+        size = int(match.group(1))
+        filename = match.group(2)
+
+        # Only audio files
+        if not any(filename.lower().endswith(ext) for ext in ('.wav', '.mp3', '.m4a', '.flac', '.aac')):
+            continue
+
+        # Exclude teasers
+        if 'teaser' in filename.lower() or 'טיזר' in filename:
+            continue
+
+        # For root files: filter to Final Cut / Final Mix / Final / special MP3s
+        if subfolder is None:
+            is_final = bool(re.search(r'final\s*(cut|mix|2)?', filename, re.IGNORECASE))
+            is_special_mp3 = filename.lower().endswith('.mp3')  # e.g. "011124 שוק נתניה.mp3"
+            if not is_final and not is_special_mp3:
+                continue
+
+        name = extract_episode_name(filename) if subfolder is None else extract_episode_name(subfolder)
+        episodes.append({
+            'name': name,
+            'filename': filename,
+            'size': size,
+            'subfolder': subfolder,
+        })
+    return episodes
+
+
+def _deduplicate_episodes(episodes: list[dict]) -> list[dict]:
+    """Handle duplicates: prefer 'Final Cut' > 'Final 2' > 'Final Mix' > 'Final'."""
+    by_name: dict[str, list[dict]] = {}
+    for ep in episodes:
+        by_name.setdefault(ep['name'], []).append(ep)
+
+    result = []
+    for name, eps in by_name.items():
+        if len(eps) == 1:
+            result.append(eps[0])
+            continue
+        # Score each candidate
+        def _score(ep):
+            fn = ep['filename'].lower()
+            if 'final cut' in fn:
+                return 4
+            if 'final 2' in fn or 'final2' in fn:
+                return 3
+            if 'final mix' in fn:
+                return 2
+            if 'final' in fn:
+                return 1
+            return 0
+        eps.sort(key=_score, reverse=True)
+        result.append(eps[0])
+    return result
+
+
+def download_episode(episode: dict) -> str:
+    """Download a single episode audio file from Drive to TEMP_DIR.
+
+    Returns local path to downloaded file.
+    """
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    if episode['subfolder']:
+        src = f"{DRIVE_REMOTE}:{episode['subfolder']}/{episode['filename']}"
+    else:
+        src = f"{DRIVE_REMOTE}:{episode['filename']}"
+    subprocess.run(
+        ['rclone', 'copy', src, str(TEMP_DIR), '--drive-root-folder-id', DRIVE_FOLDER_ID],
+        capture_output=True, text=True, check=True
+    )
+    return str(TEMP_DIR / episode['filename'])
+
+
+def extract_episode_name(filename: str) -> str:
+    """Extract clean episode name from filename.
+
+    'Afula - Final Cut.wav' -> 'Afula'
+    'Bat Galim - Final Cut.wav' -> 'Bat Galim'
+    '011124 שוק נתניה.mp3' -> 'שוק נתניה'
+    'ספיישל מצפה רמון' (subfolder name) -> 'מצפה רמון'
+    """
+    name = filename
+
+    # Handle subfolder names like "ספיישל מצפה רמון"
+    if 'ספיישל' in name and '.' not in name:
+        name = re.sub(r'ספיישל\s*', '', name).strip()
+        return name
+
+    # Remove file extension
+    name = re.sub(r'\.(wav|mp3|m4a|flac|aac)$', '', name, flags=re.IGNORECASE)
+
+    # Remove " - Final Cut", " - Final Mix", " - Final 2", " - Final" suffix
+    name = re.sub(r'\s*-\s*[Ff]inal\s*([Cc]ut|[Mm]ix|2)?\s*$', '', name)
+
+    # Handle date-prefixed Hebrew names: "011124 שוק נתניה" -> "שוק נתניה"
+    name = re.sub(r'^\d{6}\s+', '', name)
+
+    # Handle "מתוקן" (corrected) suffix
+    name = re.sub(r'\s+מתוקן\s*$', '', name)
+
+    return name.strip()
+
+
+def cleanup_temp(path: str):
+    """Delete a temp file."""
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+    except OSError:
+        pass
+
+
 def slugify(name: str) -> str:
     """Convert episode name to URL slug.
     'שוק רמלה' → 'ramle'
@@ -34,7 +206,6 @@ def slugify(name: str) -> str:
     """
     # For Hebrew names, transliterate manually would be complex.
     # Use a simple approach: lowercase, replace spaces with hyphens, strip non-alphanum
-    import re
     slug = name.lower().strip()
     slug = re.sub(r'[^\w\s-]', '', slug)
     slug = re.sub(r'[\s_]+', '-', slug)
@@ -247,6 +418,117 @@ def cmd_transcribe(args):
     if mp3_path != file_path and os.path.exists(mp3_path):
         os.remove(mp3_path)
 
+def cmd_download(args):
+    """Download episodes from Google Drive."""
+    if args.list:
+        print('📂 Listing episodes from Google Drive...')
+        episodes = list_drive_episodes()
+        if not episodes:
+            print('No episodes found.')
+            return
+        print(f'\n{"#":<4} {"Name":<30} {"Filename":<50} {"Size (MB)":<10} {"Subfolder":<20}')
+        print('-' * 114)
+        for i, ep in enumerate(episodes, 1):
+            size_mb = f"{ep['size'] / 1024 / 1024:.1f}"
+            subfolder = ep['subfolder'] or '-'
+            print(f'{i:<4} {ep["name"]:<30} {ep["filename"]:<50} {size_mb:<10} {subfolder:<20}')
+        print(f'\nTotal: {len(episodes)} episodes')
+    elif args.episode:
+        episodes = list_drive_episodes()
+        target = args.episode.lower()
+        match = [ep for ep in episodes if ep['name'].lower() == target or target in ep['name'].lower()]
+        if not match:
+            print(f'❌ Episode not found: {args.episode}')
+            print('Available:', ', '.join(ep['name'] for ep in episodes))
+            sys.exit(1)
+        ep = match[0]
+        print(f'⬇️  Downloading: {ep["filename"]}')
+        local_path = download_episode(ep)
+        print(f'✅ Downloaded to: {local_path}')
+    elif args.all:
+        episodes = list_drive_episodes()
+        print(f'⬇️  Downloading {len(episodes)} episodes...')
+        for i, ep in enumerate(episodes, 1):
+            print(f'  [{i}/{len(episodes)}] {ep["filename"]}')
+            local_path = download_episode(ep)
+            print(f'    → {local_path}')
+        print(f'✅ All episodes downloaded to: {TEMP_DIR}')
+    else:
+        print('Error: specify --list, --episode, or --all')
+        sys.exit(1)
+
+
+def cmd_pipeline(args):
+    """Full pipeline: download + transcribe from Google Drive."""
+    load_env()
+    print('📂 Listing episodes from Google Drive...')
+    episodes = list_drive_episodes()
+    if not episodes:
+        print('No episodes found.')
+        return
+
+    if args.limit:
+        episodes = episodes[:args.limit]
+
+    transcribed = []
+    skipped = []
+    needs_article = []
+
+    for i, ep in enumerate(episodes, 1):
+        slug = slugify(ep['name'])
+        article_path = ARTICLES_DIR / f'{slug}.json'
+        transcript_path = TRANSCRIPTS_DIR / f'{slug}.json'
+
+        # Skip if article already exists (unless --force)
+        if article_path.exists() and not args.force:
+            print(f'  [{i}/{len(episodes)}] ⏭  {ep["name"]} (slug: {slug}) — article exists, skipping')
+            skipped.append(ep['name'])
+            continue
+
+        # Skip if already transcribed (unless --force)
+        if transcript_path.exists() and not args.force:
+            print(f'  [{i}/{len(episodes)}] ⏭  {ep["name"]} (slug: {slug}) — transcript exists')
+            needs_article.append(slug)
+            continue
+
+        print(f'  [{i}/{len(episodes)}] ⬇️  Downloading: {ep["filename"]}')
+        local_path = download_episode(ep)
+
+        print(f'  [{i}/{len(episodes)}] 🔄 Converting to MP3...')
+        mp3_path = convert_to_mp3(local_path)
+
+        print(f'  [{i}/{len(episodes)}] 🎤 Transcribing via Whisper...')
+        transcript = transcribe(mp3_path)
+        save_transcript(transcript, slug)
+        transcribed.append(slug)
+
+        print(f'  [{i}/{len(episodes)}] ⏸  Article generation needed for {slug} — run manually in Claude Code')
+        needs_article.append(slug)
+
+        # Clean up temp files
+        cleanup_temp(local_path)
+        if mp3_path != local_path:
+            cleanup_temp(mp3_path)
+
+    # Summary
+    print('\n' + '=' * 60)
+    print('📊 Pipeline Summary')
+    print('=' * 60)
+    if transcribed:
+        print(f'\n✅ Transcribed ({len(transcribed)}):')
+        for slug in transcribed:
+            print(f'   - {slug}')
+    if skipped:
+        print(f'\n⏭  Skipped — article exists ({len(skipped)}):')
+        for name in skipped:
+            print(f'   - {name}')
+    if needs_article:
+        print(f'\n📝 Needs article generation ({len(needs_article)}):')
+        for slug in needs_article:
+            print(f'   - {slug}')
+    print()
+
+
 def cmd_render(args):
     """Render article JSON to HTML."""
     if args.all:
@@ -284,12 +566,28 @@ def main():
     p_render.add_argument('--slug', help='Episode slug to render')
     p_render.add_argument('--all', action='store_true', help='Render all articles')
 
+    # download
+    p_download = subparsers.add_parser('download', help='Download episodes from Google Drive')
+    p_download.add_argument('--list', action='store_true', help='List available episodes')
+    p_download.add_argument('--episode', help='Download a specific episode by name')
+    p_download.add_argument('--all', action='store_true', help='Download all episodes')
+
+    # pipeline
+    p_pipeline = subparsers.add_parser('pipeline', help='Full pipeline: download + transcribe from Drive')
+    p_pipeline.add_argument('--all', action='store_true', help='Process all episodes from Drive')
+    p_pipeline.add_argument('--limit', type=int, help='Process only first N episodes')
+    p_pipeline.add_argument('--force', action='store_true', help='Overwrite existing transcripts/articles')
+
     args = parser.parse_args()
 
     if args.command == 'transcribe':
         cmd_transcribe(args)
     elif args.command == 'render':
         cmd_render(args)
+    elif args.command == 'download':
+        cmd_download(args)
+    elif args.command == 'pipeline':
+        cmd_pipeline(args)
     else:
         parser.print_help()
 
