@@ -331,16 +331,16 @@ def render_body_html(article: dict) -> str:
             colors = {'primary': 'primary', 'tertiary': 'tertiary', 'secondary': 'secondary'}
             color = colors.get(s.get('color', 'primary'), 'primary')
 
-            # Insert full-width photo before station header (if available)
+            # Insert contained photo before station header (if available)
+            # Stays within article column — not full-bleed like hero
             station_num = s['number']
             if station_num in station_images:
                 img_path = station_images[station_num]
                 html_parts.append(f'''
-  </article>
-  <figure class="w-full mb-0">
-    <img class="w-full h-[500px] md:h-[614px] object-cover" src="{img_path}" alt="{s['name']}"/>
-  </figure>
-  <article class="max-w-[680px] mx-auto px-6 pt-12 text-on-surface">''')
+    <figure class="mt-16 mb-8">
+      <img class="w-full aspect-[16/10] object-cover rounded-sm" src="{img_path}" alt="{s['name']}"/>
+      <figcaption class="mt-3 font-label text-xs text-on-surface-variant italic">{s['name']}</figcaption>
+    </figure>''')
 
             html_parts.append(f'''
     <div class="flex items-start gap-6 mb-8 group mt-16">
