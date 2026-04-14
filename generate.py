@@ -339,7 +339,6 @@ def render_body_html(article: dict) -> str:
                 html_parts.append(f'''
     <figure class="mt-16 mb-8">
       <img class="w-full aspect-[16/10] object-cover rounded-sm" src="{img_path}" alt="{s['name']}"/>
-      <figcaption class="mt-3 font-label text-xs text-on-surface-variant italic">{s['name']}</figcaption>
     </figure>''')
 
             html_parts.append(f'''
